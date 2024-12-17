@@ -40,14 +40,14 @@ export default function Services() {
   const { t } = useLanguage();
 
   return (
-    <Box pt={{ base: 20, md: 28 }} pb={20} bg="pink.50">
+    <Box pt={{ base: 20, md: 28 }} pb={20} bg="gray.100">
       <Container maxW="container.xl">
         <VStack spacing={8} mb={16} textAlign="center">
           <Heading
             fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}
             fontWeight="light"
             letterSpacing="wider"
-            color="pink.600"
+            color="black"
           >
             {t('servicesTitle')}
           </Heading>
@@ -60,8 +60,8 @@ export default function Services() {
           {services.map((service, index) => (
             <AnimatedCard key={index} delay={index * 0.1}>
               <VStack spacing={6} align="start" p={6}>
-                <Icon as={service.icon} w={12} h={12} color="pink.600" />
-                <Heading size="lg" fontWeight="light" color="pink.600">
+                <Icon as={service.icon} w={12} h={12} color="black" />
+                <Heading size="lg" fontWeight="light" color="black">
                   {service.title}
                 </Heading>
                 <Text color="gray.700">{service.description}</Text>
@@ -72,7 +72,7 @@ export default function Services() {
                     </Text>
                   ))}
                 </VStack>
-                <Button variant="outline" borderColor="pink.600" color="pink.600" _hover={{ bg: "pink.600", color: "white" }} size="lg" w="full">
+                <Button variant="outline" borderColor="black" color="black" _hover={{ bg: "black", color: "white" }} size="lg" w="full">
                   {t('bookConsultation')}
                 </Button>
               </VStack>
