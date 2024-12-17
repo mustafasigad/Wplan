@@ -67,7 +67,7 @@ export default function Navbar() {
       }}
     >
       <Image
-        src="/images/qd-logo.png"
+     src="/Wplan/images/qd-logo.png"  
         alt="Qarshileh Design Logo"
         boxSize={{ base: "50px", md: "60px" }}  // Increased size for better visibility
         objectFit="cover"
