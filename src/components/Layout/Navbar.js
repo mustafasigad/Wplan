@@ -327,7 +327,7 @@ export default function Navbar() {
                 onMouseEnter={() => setHoveredMenu(key)}
                 onMouseLeave={() => setHoveredMenu(null)}
               >
-                <NavLink href={`/${key}`} hasSubmenu>
+                <NavLink href={`/Wplan/${key}`} hasSubmenu>
                 
                   {menu.title}
                 </NavLink>
