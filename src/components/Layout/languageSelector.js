@@ -1,83 +1,64 @@
-// src/context/LanguageContext.js
-import React, { createContext, useContext, useState } from 'react';
+// src/components/Layout/LanguageSelector.js
+import React from 'react';
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Button,
+  HStack,
+  Text,
+} from '@chakra-ui/react';
+import { ChevronDownIcon } from '@chakra-ui/icons';
+import { useLanguage } from '../../context/LanguageContext';
 
-const LanguageContext = createContext();
+const languages = [
+  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'ar', name: 'العربية', flag: '🇩🇯' },
+  { code: 'en', name: 'English', flag: '🇬🇧' }
+];
 
-export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState('en');
+const LanguageSelector = () => {
+  const { language, setLanguage } = useLanguage();
 
-  const t = (key) => {
-    const translations = {
-      en: {
-        navServices: 'Services',
-        navPortfolio: 'Portfolio',
-        navContact: 'Contact',
-        fullPlanning: 'Full Planning',
-        partialPlanning: 'Partial Planning',
-        vendorSelection: 'Vendor Selection',
-        dayCoordination: 'Day Coordination',
-        fullPlanningDesc: 'Complete wedding planning service',
-        partialPlanningDesc: 'Partial wedding planning assistance',
-        vendorSelectionDesc: 'Help choosing the right vendors',
-        dayCoordinationDesc: 'Coordination on your wedding day',
-        bookConsultation: 'Book Consultation',
-        followUs: 'Follow Us',
-        luxuryWeddings: 'Luxury Weddings',
-        destinationWeddings: 'Destination Weddings',
-        traditionalWeddings: 'Traditional Weddings'
-      },
-      fr: {
-        navServices: 'Services',
-        navPortfolio: 'Portfolio',
-        navContact: 'Contact',
-        fullPlanning: 'Planification Complète',
-        partialPlanning: 'Planification Partielle',
-        vendorSelection: 'Sélection des Prestataires',
-        dayCoordination: 'Coordination du Jour J',
-        fullPlanningDesc: 'Service complet de planification de mariage',
-        partialPlanningDesc: 'Assistance partielle à la planification',
-        vendorSelectionDesc: 'Aide au choix des prestataires',
-        dayCoordinationDesc: 'Coordination le jour de votre mariage',
-        bookConsultation: 'Réserver une Consultation',
-        followUs: 'Suivez-nous',
-        luxuryWeddings: 'Mariages de Luxe',
-        destinationWeddings: 'Mariages de Destination',
-        traditionalWeddings: 'Mariages Traditionnels'
-      },
-      ar: {
-        navServices: 'خدمات',
-        navPortfolio: 'معرض الأعمال',
-        navContact: 'اتصل بنا',
-        fullPlanning: 'تخطيط كامل',
-        partialPlanning: 'تخطيط جزئي',
-        vendorSelection: 'اختيار الموردين',
-        dayCoordination: 'تنسيق يوم الزفاف',
-        fullPlanningDesc: 'خدمة تخطيط الزفاف الكاملة',
-        partialPlanningDesc: 'مساعدة في تخطيط الزفاف',
-        vendorSelectionDesc: 'المساعدة في اختيار الموردين المناسبين',
-        dayCoordinationDesc: 'التنسيق في يوم زفافك',
-        bookConsultation: 'احجز استشارة',
-        followUs: 'تابعنا',
-        luxuryWeddings: 'حفلات زفاف فاخرة',
-        destinationWeddings: 'حفلات زفاف في وجهات مميزة',
-        traditionalWeddings: 'حفلات زفاف تقليدية'
-      }
-    };
-
-    return translations[language][key] || key;
+  const getCurrentLanguage = () => {
+    return languages.find(lang => lang.code === language);
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
-      {children}
-    </LanguageContext.Provider>
+    <Menu>
+      <MenuButton
+        as={Button}
+        rightIcon={<ChevronDownIcon />}
+        variant="outline"
+        size="md"
+        borderColor="brand.600"
+        _hover={{ bg: 'brand.100' }}
+        _active={{ bg: 'brand.200' }}
+      >
+        <HStack spacing={2}>
+          <Text>{getCurrentLanguage()?.flag}</Text>
+          <Text display={{ base: 'none', md: 'block' }} fontWeight="bold">
+            {getCurrentLanguage()?.name}
+          </Text>
+        </HStack>
+      </MenuButton>
+      <MenuList>
+        {languages.map((lang) => (
+          <MenuItem
+            key={lang.code}
+            onClick={() => setLanguage(lang.code)}
+            fontWeight={language === lang.code ? 'bold' : 'normal'}
+          >
+            <HStack spacing={2}>
+              <Text>{lang.flag}</Text>
+              <Text>{lang.name}</Text>
+            </HStack>
+          </MenuItem>
+        ))}
+      </MenuList>
+    </Menu>
   );
 };
 
-export const useLanguage = () => {
-  const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
-  }
-  return context;
-};
+export default LanguageSelector;
