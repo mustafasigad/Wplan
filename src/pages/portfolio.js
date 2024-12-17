@@ -102,7 +102,7 @@ export default function Portfolio() {
   };
 
   return (
-    <Box minH="100vh" pt={20} pb={20} bg="pink.50">
+    <Box minH="100vh" pt={20} pb={20} bg="gray.100">
       <Container maxW="container.xl">
         {/* Hero Section */}
         <VStack spacing={6} mb={16}>
@@ -110,7 +110,7 @@ export default function Portfolio() {
             fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}
             fontWeight="light"
             letterSpacing="wider"
-            color="pink.600"
+            color="black"
             textAlign="center"
           >
             Our Wedding Portfolio
@@ -136,7 +136,7 @@ export default function Portfolio() {
             <Button
               key={category}
               variant={selectedCategory === category ? "solid" : "outline"}
-              colorScheme="pink"
+              colorScheme="blue"
               onClick={() => setSelectedCategory(category)}
               size="lg"
               rounded="full"
@@ -173,7 +173,7 @@ export default function Portfolio() {
                   mb={2}
                   fontWeight="light"
                   letterSpacing="wide"
-                  color="pink.600"
+                  color="black"
                 >
                   {item.title}
                 </Heading>
@@ -186,7 +186,7 @@ export default function Portfolio() {
                       key={tag}
                       size="sm"
                       variant="subtle"
-                      colorScheme="pink"
+                      colorScheme="black"
                     >
                       {tag}
                     </Tag>
@@ -227,7 +227,7 @@ export default function Portfolio() {
                       transform="translateY(-50%)"
                       onClick={prevImage}
                       size="lg"
-                      colorScheme="pink"
+                      colorScheme="black"
                       variant="ghost"
                       aria-label="Previous Image"
                     />
@@ -239,7 +239,7 @@ export default function Portfolio() {
                       transform="translateY(-50%)"
                       onClick={nextImage}
                       size="lg"
-                      colorScheme="pink"
+                      colorScheme="black"
                       variant="ghost"
                       aria-label="Next Image"
                     />
@@ -249,7 +249,7 @@ export default function Portfolio() {
                       size="lg"
                       fontWeight="light"
                       letterSpacing="wide"
-                      color="pink.600"
+                        colorScheme="black"
                     >
                       {selectedItem.title}
                     </Heading>
@@ -270,7 +270,7 @@ export default function Portfolio() {
                           key={tag}
                           size="md"
                           variant="subtle"
-                          colorScheme="pink"
+                             colorScheme="black"
                         >
                           {tag}
                         </Tag>
